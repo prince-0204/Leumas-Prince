@@ -37,8 +37,8 @@ export default function History() {
   });
 
   const filteredTransactions = transactions.filter(transaction => {
-    const matchesProduct = filters.productId === "" || transaction.productId.toString() === filters.productId;
-    const matchesType = filters.type === "" || transaction.type === filters.type;
+    const matchesProduct = filters.productId === "" || filters.productId === "all" || transaction.productId.toString() === filters.productId;
+    const matchesType = filters.type === "" || filters.type === "all" || transaction.type === filters.type;
     
     const transactionDate = new Date(transaction.timestamp);
     const matchesFromDate = filters.fromDate === "" || transactionDate >= new Date(filters.fromDate);
@@ -79,7 +79,7 @@ export default function History() {
                     <SelectValue placeholder="All Products" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="">All Products</SelectItem>
+                    <SelectItem value="all">All Products</SelectItem>
                     {products.map(product => (
                       <SelectItem key={product.id} value={product.id.toString()}>
                         {product.name}
@@ -95,7 +95,7 @@ export default function History() {
                     <SelectValue placeholder="All Types" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="">All Types</SelectItem>
+                    <SelectItem value="all">All Types</SelectItem>
                     <SelectItem value="IN">Stock In</SelectItem>
                     <SelectItem value="OUT">Stock Out</SelectItem>
                   </SelectContent>

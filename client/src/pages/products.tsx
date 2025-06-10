@@ -55,9 +55,9 @@ export default function Products() {
       product.name.toLowerCase().includes(filters.search.toLowerCase()) ||
       product.sku.toLowerCase().includes(filters.search.toLowerCase());
     
-    const matchesCategory = filters.category === "" || product.category === filters.category;
+    const matchesCategory = filters.category === "" || filters.category === "all" || product.category === filters.category;
     
-    const matchesStockStatus = filters.stockStatus === "" ||
+    const matchesStockStatus = filters.stockStatus === "" || filters.stockStatus === "all" ||
       (filters.stockStatus === "in-stock" && product.currentStock > 5) ||
       (filters.stockStatus === "low-stock" && product.currentStock > 0 && product.currentStock <= 5) ||
       (filters.stockStatus === "out-of-stock" && product.currentStock === 0);
@@ -129,7 +129,7 @@ export default function Products() {
                     <SelectValue placeholder="All Categories" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="">All Categories</SelectItem>
+                    <SelectItem value="all">All Categories</SelectItem>
                     <SelectItem value="electronics">Electronics</SelectItem>
                     <SelectItem value="furniture">Furniture</SelectItem>
                     <SelectItem value="accessories">Accessories</SelectItem>
@@ -144,7 +144,7 @@ export default function Products() {
                     <SelectValue placeholder="All Stock" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="">All Stock</SelectItem>
+                    <SelectItem value="all">All Stock</SelectItem>
                     <SelectItem value="in-stock">In Stock</SelectItem>
                     <SelectItem value="low-stock">Low Stock</SelectItem>
                     <SelectItem value="out-of-stock">Out of Stock</SelectItem>
