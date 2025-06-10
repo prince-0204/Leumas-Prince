@@ -10,6 +10,7 @@ import {
   LogOut 
 } from "lucide-react";
 
+
 interface SidebarProps {
   isOpen: boolean;
   onClose: () => void;
@@ -42,18 +43,21 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
 
       {/* Sidebar */}
       <div className={cn(
-        "fixed inset-y-0 left-0 z-50 w-64 bg-white shadow-lg transform transition-transform duration-300 ease-in-out lg:translate-x-0 lg:static lg:inset-0",
+        "fixed inset-y-0 left-0 z-50 w-64 bg-white transform transition-transform duration-300 ease-in-out lg:translate-x-0 lg:static lg:inset-0 lg:flex lg:flex-col lg:shadow-none",
+        "shadow-lg lg:border-r lg:border-slate-200",
         isOpen ? "translate-x-0" : "-translate-x-full"
       )}>
-        <div className="flex items-center justify-center h-16 bg-primary">
+        {/* Header */}
+        <div className="flex items-center justify-center h-16 bg-primary flex-shrink-0">
           <div className="flex items-center">
             <Package className="text-white text-xl mr-2" />
             <span className="text-white text-lg font-semibold">Mini Inventory</span>
           </div>
         </div>
         
-        <nav className="mt-8 flex-1">
-          <div className="px-4 space-y-2">
+        {/* Navigation - grows to fill available space */}
+        <nav className="flex-1 flex flex-col mt-8">
+          <div className="px-4 space-y-2 flex-1">
             {navigation.map((item) => {
               const isActive = location === item.href;
               const Icon = item.icon;
@@ -77,7 +81,8 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
             })}
           </div>
           
-          <div className="absolute bottom-4 left-4 right-4">
+          {/* Logout button - stays at bottom */}
+          <div className="px-4 pb-4 flex-shrink-0">
             <button 
               onClick={handleLogout}
               className="w-full flex items-center px-4 py-3 text-sm font-medium text-slate-700 rounded-lg hover:bg-slate-100 transition-colors"

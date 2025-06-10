@@ -27,7 +27,7 @@ export default function Dashboard() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mb-8">
           <h1 className="text-2xl font-bold text-slate-900">Dashboard</h1>
-          <p className="mt-1 text-sm text-slate-600">Overview of your warehouse inventory</p>
+          <p className="mt-1 text-sm text-slate-600">Overview of leumas warehouse inventory</p>
         </div>
 
         {/* Metrics Cards */}

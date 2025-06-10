@@ -20,7 +20,7 @@ export default function Topbar({ onMenuClick }: TopbarProps) {
               >
                 <Menu className="h-6 w-6" />
               </Button>
-              <h1 className="ml-4 text-lg font-semibold text-slate-900">Mini Inventory</h1>
+              <h1 className="ml-4 text-lg font-semibold text-slate-900">Leumas Inventory</h1>
             </div>
           </div>
         </div>

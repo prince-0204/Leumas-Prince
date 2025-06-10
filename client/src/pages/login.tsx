@@ -58,7 +58,7 @@ export default function Login() {
             <Package className="text-white text-2xl" />
           </div>
           <h2 className="text-3xl font-bold text-slate-900">Leumas Mini Inventory</h2>
-          <p className="mt-2 text-sm text-slate-600">Sign in to your warehouse management system</p>
+          <p className="mt-2 text-sm text-slate-600">Sign in to Leumas warehouse management system</p>
         </div>
         
         <Card>
