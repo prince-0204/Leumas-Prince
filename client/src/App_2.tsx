@@ -16,11 +16,11 @@ import NotFound from "@/pages/not-found";
 
 function ProtectedRoute({ children }: { children: React.ReactNode }) {
   const isAuthenticated = authService.isAuthenticated();
-
+  
   if (!isAuthenticated) {
     return <Redirect to="/login" />;
   }
-
+  
   return <>{children}</>;
 }
 
@@ -30,16 +30,10 @@ function Layout({ children }: { children: React.ReactNode }) {
   return (
     <div className="min-h-screen bg-slate-50">
       <Sidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
-
-      {/* Mobile layout - with sidebar */}
-      <div className="lg:hidden">
+      
+      <div className="lg:pl-64">
         <Topbar onMenuClick={() => setSidebarOpen(true)} />
-        <main className="p-4">{children}</main>
-      </div>
-
-      {/* Desktop layout - with navbar */}
-      <div className="hidden lg:block pt-16">
-        <main className="p-6">{children}</main>
+        <main>{children}</main>
       </div>
     </div>
   );
@@ -49,7 +43,7 @@ function Router() {
   return (
     <Switch>
       <Route path="/login" component={Login} />
-
+      
       <Route path="/dashboard">
         <ProtectedRoute>
           <Layout>
@@ -57,7 +51,7 @@ function Router() {
           </Layout>
         </ProtectedRoute>
       </Route>
-
+      
       <Route path="/products">
         <ProtectedRoute>
           <Layout>
@@ -65,7 +59,7 @@ function Router() {
           </Layout>
         </ProtectedRoute>
       </Route>
-
+      
       <Route path="/transactions">
         <ProtectedRoute>
           <Layout>
@@ -73,7 +67,7 @@ function Router() {
           </Layout>
         </ProtectedRoute>
       </Route>
-
+      
       <Route path="/history">
         <ProtectedRoute>
           <Layout>
@@ -81,11 +75,11 @@ function Router() {
           </Layout>
         </ProtectedRoute>
       </Route>
-
+      
       <Route path="/">
         <Redirect to="/dashboard" />
       </Route>
-
+      
       <Route component={NotFound} />
     </Switch>
   );
