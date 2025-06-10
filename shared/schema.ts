@@ -43,6 +43,8 @@ export const insertProductSchema = createInsertSchema(products).pick({
   sku: true,
   category: true,
   currentStock: true,
+}).extend({
+  currentStock: z.number().min(0).default(0),
 });
 
 export const updateProductSchema = insertProductSchema.partial();
@@ -53,6 +55,8 @@ export const insertTransactionSchema = createInsertSchema(transactions).pick({
   type: true,
   quantity: true,
   notes: true,
+}).extend({
+  notes: z.string().optional(),
 });
 
 export type User = typeof users.$inferSelect;

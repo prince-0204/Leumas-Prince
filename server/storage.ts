@@ -84,8 +84,11 @@ export class MemStorage implements IStorage {
   async createProduct(product: InsertProduct): Promise<Product> {
     const id = this.currentProductId++;
     const newProduct: Product = {
-      ...product,
       id,
+      name: product.name,
+      sku: product.sku,
+      category: product.category,
+      currentStock: product.currentStock ?? 0,
       createdAt: new Date(),
     };
     this.products.set(id, newProduct);
@@ -138,8 +141,11 @@ export class MemStorage implements IStorage {
   async createTransaction(transaction: InsertTransaction): Promise<Transaction> {
     const id = this.currentTransactionId++;
     const newTransaction: Transaction = {
-      ...transaction,
       id,
+      productId: transaction.productId,
+      type: transaction.type,
+      quantity: transaction.quantity,
+      notes: transaction.notes || null,
       timestamp: new Date(),
     };
     this.transactions.set(id, newTransaction);

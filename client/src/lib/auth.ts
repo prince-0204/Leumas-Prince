@@ -1,4 +1,4 @@
-import { apiRequest } from "./api";
+import { apiRequest } from "./queryClient";
 import { LoginData } from "@shared/schema";
 
 export interface User {
@@ -14,7 +14,7 @@ class AuthService {
     const data = await res.json();
     this.user = data.user;
     localStorage.setItem("user", JSON.stringify(this.user));
-    return this.user;
+    return this.user!;
   }
 
   logout(): void {
